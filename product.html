@@ -34,8 +34,14 @@
 		const btnCart = document.querySelectorAll(".btn-cart");
 		for(let i=0; i<btnCart. length; i++){
 			btnCart[i].addEventListener("click", ()=>{
-				let p = btnCart[i].getAttribute("data-pid");
-				alert(`${p}‚ª‰Ÿ‚³‚ê‚½?`);
+				let pid = btnCart[i].getAttribute("data-pid");
+				let xhr = new XmlHttpRequest();
+				xhr.open("POST", "add.php");
+				xhr.onload = ()=>{
+					let response = xhr.responseText;
+					alert(response);
+				}
+				xhr.send(`pid=${pid}`);
 			});
 		}
 	</script>
